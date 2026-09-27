@@ -15,6 +15,7 @@ class CardAppearance(
     private val cardZoom: Int,
     private val imageZoom: Int,
     private val centerVertically: Boolean,
+    private val globalCss: String = "",
 ) {
     /** Below could be in a better abstraction.  */
     fun appendCssStyle(style: StringBuilder) {
@@ -52,11 +53,25 @@ class CardAppearance(
         return cardClass.toString()
     }
 
+    /**
+     * User-supplied CSS applied to every card, regardless of note type.
+     *
+     * Injected into the document head (via `::style::`), so a note type's own styling — which is
+     * emitted inside `<body>` — wins wherever both match.
+     */
+    private fun appendGlobalCssStyle(style: StringBuilder) {
+        if (globalCss.isBlank()) return
+        // `</` would close the surrounding <style> element early; CSS accepts `\/` for `/`
+        style.append(globalCss.replace("</", "<\\/"))
+        style.append("\n")
+    }
+
     val style: String
         get() {
             val style = StringBuilder()
             customFonts.updateCssStyle(style)
             appendCssStyle(style)
+            appendGlobalCssStyle(style)
             return style.toString()
         }
 
@@ -72,7 +87,8 @@ class CardAppearance(
             val cardZoom = preferences.getInt("cardZoom", 100)
             val imageZoom = preferences.getInt("imageZoom", 100)
             val centerVertically = preferences.getBoolean("centerVertically", false)
-            return CardAppearance(customFonts, cardZoom, imageZoom, centerVertically)
+            val globalCss = preferences.getString("globalCardCss", "").orEmpty()
+            return CardAppearance(customFonts, cardZoom, imageZoom, centerVertically, globalCss)
         }
 
         fun fixBoldStyle(content: String): String {

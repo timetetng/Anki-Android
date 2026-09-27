@@ -1,0 +1,59 @@
+name: 🎨 Build themed APK
+
+# Builds an installable APK for the themed fork.
+# Upstream ships no workflow that produces an APK, so this one exists only here.
+
+on:
+  push:
+    branches:
+      - theme-neri
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Assemble full release APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      # Skip R8: faster builds, and a smaller diff surface for a personal fork
+      MINIFY_ENABLED: "false"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Configure JDK
+        uses: actions/setup-java@dd06d9cba3e5552c54d9f8ea23572deb30010f7c # v6.0.0
+        with:
+          distribution: "jetbrains"
+          java-version: "21"
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6.3.0
+        with:
+          cache-provider: basic
+
+      - name: Assemble APK
+        # Retry: fetching Gradle network resources is flaky
+        uses: nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4.0.0
+        with:
+          timeout_minutes: 60
+          retry_wait_seconds: 30
+          max_attempts: 2
+          command: ./gradlew :AnkiDroid:assembleFullRelease --daemon
+
+      - name: List APKs
+        run: ls -l AnkiDroid/build/outputs/apk/full/release/
+
+      - name: Upload APK
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: AnkiDroid-themed
+          path: AnkiDroid/build/outputs/apk/full/release/*.apk
+          if-no-files-found: error

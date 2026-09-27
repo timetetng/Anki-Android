@@ -4,15 +4,22 @@ package com.ichi2.anki.preferences
 
 import android.content.ActivityNotFoundException
 import android.os.Build
+import android.text.InputType
+import android.view.Gravity
+import android.widget.EditText
+import android.widget.FrameLayout
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
+import androidx.core.content.edit
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.SwitchPreferenceCompat
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.ichi2.anki.CollectionManager
 import com.ichi2.anki.CollectionManager.TR
 import com.ichi2.anki.R
+import com.ichi2.anki.common.preferences.sharedPrefs
 import com.ichi2.anki.common.utils.android.showThemedToast
 import com.ichi2.anki.common.utils.android.systemIsInNightMode
 import com.ichi2.anki.deckpicker.BackgroundImage
@@ -93,8 +100,45 @@ class AppearanceSettingsFragment : SettingsFragment() {
             }
         }
 
+        // Global card CSS, applied to every card on every note type
+        requirePreference<Preference>(R.string.global_card_css_key).apply {
+            setOnPreferenceClickListener {
+                showGlobalCardCssDialog()
+                true
+            }
+        }
+
         setupThemePreferences()
         setupNewStudyScreenSettings()
+    }
+
+    /** Lets the user edit the CSS injected into every card, whatever its note type. */
+    private fun showGlobalCardCssDialog() {
+        val preferences = requireContext().sharedPrefs()
+        val key = getString(R.string.global_card_css_key)
+        val editor =
+            EditText(requireContext()).apply {
+                setText(preferences.getString(key, "").orEmpty())
+                hint = getString(R.string.global_card_css_hint)
+                gravity = Gravity.TOP or Gravity.START
+                inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_MULTI_LINE
+                minLines = 10
+                isSingleLine = false
+            }
+        val container =
+            FrameLayout(requireContext()).apply {
+                val padding = (16 * resources.displayMetrics.density).toInt()
+                setPadding(padding, padding / 2, padding, 0)
+                addView(editor)
+            }
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.global_card_css)
+            .setView(container)
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+                preferences.edit { putString(key, editor.text.toString()) }
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .show()
     }
 
     private fun updateRemoveBackgroundVisibility() {

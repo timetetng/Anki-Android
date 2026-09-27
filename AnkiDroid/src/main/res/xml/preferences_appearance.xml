@@ -127,6 +127,14 @@
             android:defaultValue="false"
             android:title="@string/show_deck_title"/>
     </PreferenceCategory>
+    <PreferenceCategory android:title="@string/pref_cat_card_style">
+        <Preference
+            android:key="@string/global_card_css_key"
+            android:title="@string/global_card_css"
+            android:summary="@string/global_card_css_summary"
+            android:shouldDisableView="true"
+            search:ignore="true"/>
+    </PreferenceCategory>
     <PreferenceCategory android:title="@string/card_browser">
         <SwitchPreferenceCompat
             android:checked="false"
