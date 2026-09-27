@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Material You (dynamic colour) themes.
+
+  The wallpaper-derived palette only exists from API 31, so these entries are
+  placeholders that degrade to the ordinary light/dark themes. The real
+  definitions live in `values-v31/theme_dynamic.xml`.
+-->
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="DuplicateCrowdInStrings">
+    <style name="Theme_Light_Dynamic" parent="Theme_Light" />
+    <style name="Theme_Dark_Dynamic" parent="Theme_Dark" />
+</resources>

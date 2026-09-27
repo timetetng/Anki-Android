@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Material You: palettes taken from the user's wallpaper.
+
+  Only the frame is dynamic. The review-screen answer buttons keep their
+  semantic red/grey/green/blue - an "Again" button that changes colour with
+  the wallpaper costs more than it buys.
+-->
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="DuplicateCrowdInStrings">
+    <style name="Theme_Light_Dynamic" parent="Theme_Light">
+        <!-- Framework accents -->
+        <item name="colorPrimary">@android:color/system_accent1_600</item>
+        <item name="colorPrimaryDark">@android:color/system_accent1_700</item>
+        <item name="colorAccent">@android:color/system_accent1_600</item>
+        <item name="colorSecondaryContainer">@android:color/system_accent1_100</item>
+
+        <!-- Surfaces -->
+        <item name="colorSurface">@android:color/system_neutral1_10</item>
+        <item name="android:colorBackground">@android:color/system_neutral1_10</item>
+        <item name="android:windowBackground">@android:color/system_neutral1_10</item>
+        <item name="colorSurfaceContainer">@android:color/system_neutral2_50</item>
+        <item name="colorSurfaceContainerHigh">@android:color/system_neutral2_100</item>
+        <item name="colorSurfaceContainerHighest">@android:color/system_neutral2_100</item>
+        <item name="colorSurfaceContainerLow">@android:color/system_neutral1_10</item>
+        <item name="popupBackgroundColor">@android:color/system_neutral1_10</item>
+
+        <!-- App bar, tabs, FAB -->
+        <item name="appBarColor">@android:color/system_accent1_500</item>
+        <item name="tabLayoutBackgroundColor">@android:color/system_accent1_500</item>
+        <item name="actionModeBackground">@android:color/system_accent1_500</item>
+        <item name="customTabNavBarColor">@android:color/system_accent1_500</item>
+        <item name="android:statusBarColor">@android:color/system_accent1_500</item>
+        <item name="fab_normal">@android:color/system_accent1_600</item>
+        <item name="fab_pressed">@android:color/system_accent1_700</item>
+        <item name="incrementerButtonBackground">@android:color/system_accent1_600</item>
+        <item name="progressDialogButtonTextColor">@android:color/system_accent1_600</item>
+        <item name="preferenceCategoryTitleTextColor">@android:color/system_accent1_700</item>
+        <item name="dynDeckColor">@android:color/system_accent1_600</item>
+    </style>
+
+    <style name="Theme_Dark_Dynamic" parent="Theme_Dark">
+        <!-- Framework accents -->
+        <item name="colorPrimary">@android:color/system_accent1_200</item>
+        <item name="colorOnPrimary">@android:color/system_accent1_900</item>
+        <item name="colorPrimaryDark">@android:color/system_accent1_100</item>
+        <item name="colorAccent">@android:color/system_accent1_200</item>
+        <item name="colorSecondaryContainer">@android:color/system_accent1_700</item>
+
+        <!-- Surfaces -->
+        <item name="colorSurface">@android:color/system_neutral1_900</item>
+        <item name="android:colorBackground">@android:color/system_neutral1_900</item>
+        <item name="android:windowBackground">@android:color/system_neutral1_900</item>
+        <item name="colorSurfaceContainer">@android:color/system_neutral2_800</item>
+        <item name="colorSurfaceContainerHigh">@android:color/system_neutral2_700</item>
+        <item name="colorSurfaceContainerHighest">@android:color/system_neutral2_700</item>
+        <item name="colorSurfaceContainerLow">@android:color/system_neutral1_900</item>
+        <item name="popupBackgroundColor">@android:color/system_neutral2_800</item>
+
+        <!-- App bar, tabs, FAB -->
+        <item name="appBarColor">@android:color/system_neutral2_800</item>
+        <item name="tabLayoutBackgroundColor">@android:color/system_neutral2_800</item>
+        <item name="actionModeBackground">@android:color/system_neutral2_800</item>
+        <item name="customTabNavBarColor">@android:color/system_neutral2_800</item>
+        <item name="android:statusBarColor">@android:color/system_neutral2_800</item>
+        <item name="fab_normal">@android:color/system_accent1_200</item>
+        <item name="fab_pressed">@android:color/system_accent1_100</item>
+        <item name="incrementerButtonBackground">@android:color/system_accent1_200</item>
+        <item name="progressDialogButtonTextColor">@android:color/system_accent1_200</item>
+        <item name="preferenceCategoryTitleTextColor">@android:color/system_accent1_200</item>
+        <item name="dynDeckColor">@android:color/system_accent1_200</item>
+        <item name="tabActiveIconColor">@android:color/system_accent1_200</item>
+    </style>
+</resources>

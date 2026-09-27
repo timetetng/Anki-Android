@@ -78,10 +78,12 @@
         <item>@string/day_theme_light</item>
         <item>@string/day_theme_plain</item>
         <item>@string/day_theme_eink</item>
+        <item>@string/day_theme_dynamic</item>
     </string-array>
     <string-array name="night_theme_labels">
         <item>@string/night_theme_black</item>
         <item>@string/night_theme_dark</item>
+        <item>@string/night_theme_dynamic</item>
     </string-array>
     <string-array name="html_size_code_labels">
         <item>@string/html_size_code_xx_small</item>
@@ -185,6 +187,8 @@
     <string name="theme_plain_value">2</string>
     <string name="theme_black_value">3</string>
     <string name="theme_dark_value">4</string>
+    <string name="theme_dynamic_light_value">4</string>
+    <string name="theme_dynamic_dark_value">5</string>
 
     <string-array name="app_theme_values">
         <item>@string/theme_follow_system_value</item>
@@ -195,10 +199,12 @@
         <item>@string/theme_light_value</item>
         <item>@string/theme_plain_value</item>
         <item>@string/theme_eink_scheme_value</item>
+        <item>@string/theme_dynamic_light_value</item>
     </string-array>
     <string-array name="night_theme_values">
         <item>@string/theme_black_value</item>
         <item>@string/theme_dark_value</item>
+        <item>@string/theme_dynamic_dark_value</item>
     </string-array>
 
     <string-array name="sync_media_entries">
