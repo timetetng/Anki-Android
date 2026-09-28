@@ -253,6 +253,13 @@ open class PrefsRepository(
     val isCustomSyncEnabled by booleanPref(R.string.custom_sync_server_enabled_key, defaultValue = false)
     var isBackgroundEnabled by booleanPref(R.string.pref_deck_picker_background_key, defaultValue = false)
 
+    /**
+     * Paint the background image, blurred, behind every screen rather than just [DeckPicker].
+     *
+     * @see com.ichi2.anki.glass.GlassBackground
+     */
+    var isGlassEnabled by booleanPref(R.string.glass_background_key, defaultValue = false)
+
     //endregion
 
     /**

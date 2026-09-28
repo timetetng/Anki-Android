@@ -21,6 +21,17 @@
     <color name="black">#000000</color>
     <color name="semi_transparent_black">#80000000</color>
 
+    <!-- Glass theme: translucent surfaces layered over the blurred window backdrop.
+         Alpha values are the whole point here - keep them well under FF. -->
+    <color name="glass_surface_light">#B8FFFFFF</color>
+    <color name="glass_popup_light">#F0FFFFFF</color>
+    <color name="glass_bar_light">#99FFFFFF</color>
+    <color name="glass_row_light">#33FFFFFF</color>
+    <color name="glass_surface_dark">#B81C1B1F</color>
+    <color name="glass_popup_dark">#F02A2A2E</color>
+    <color name="glass_bar_dark">#991C1B1F</color>
+    <color name="glass_row_dark">#33FFFFFF</color>
+
     <color name="answer_buttons_highlight_color">#66FFFFFF</color>
     <color name="whiteboard_eraser">#80808080</color>
 

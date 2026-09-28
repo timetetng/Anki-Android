@@ -87,6 +87,7 @@ import com.ichi2.anki.dialogs.ExportReadyDialog.Companion.REQUEST_EXPORT_SHARE
 import com.ichi2.anki.dialogs.SimpleMessageDialog
 import com.ichi2.anki.dialogs.handleExportReadyRequest
 import com.ichi2.anki.dialogs.viewmodel.ExportReadyViewModel
+import com.ichi2.anki.glass.GlassBackground
 import com.ichi2.anki.libanki.Collection
 import com.ichi2.anki.receiver.SdCardReceiver
 import com.ichi2.anki.settings.Prefs
@@ -149,6 +150,7 @@ open class AnkiActivity(
         Themes.setTheme(this, savedInstanceState)
         disableXiaomiForceDarkMode(this)
         super.onCreate(savedInstanceState)
+        GlassBackground.applyToWindow(this)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
             @Suppress("deprecation")
             window.navigationBarColor = getColor(R.color.transparent)

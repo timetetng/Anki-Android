@@ -195,6 +195,9 @@
     <string name="background_image_title" maxLength="41">Background</string>
     <string name="pref_cat_card_style">Card style</string>
     <string name="theme_dynamic">Material You</string>
+    <string name="glass_background">Glass background</string>
+    <string name="glass_background_summary">Blur the background image and show it behind every screen, with translucent surfaces on top.</string>
+    <string name="glass_background_needs_image">Choose a background image first</string>
     <string name="global_card_css">Global card CSS</string>
     <string name="global_card_css_summary">CSS injected into every card, on every note type. A note type\'s own styling overrides it.</string>
     <string name="global_card_css_hint">.card { font-size: 19px; }</string>

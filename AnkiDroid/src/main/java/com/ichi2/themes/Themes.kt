@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentActivity
 import com.ichi2.anki.BuildConfig
 import com.ichi2.anki.R
 import com.ichi2.anki.common.utils.android.systemIsInNightMode
+import com.ichi2.anki.deckpicker.BackgroundImage
 import com.ichi2.anki.settings.PrefsRepository
 import com.ichi2.anki.settings.enums.AppTheme
 import com.ichi2.anki.settings.enums.DayTheme
@@ -39,6 +40,25 @@ object Themes {
     fun setTheme(context: Context) {
         updateCurrentTheme(context)
         context.setTheme(currentTheme.styleResId)
+        applyGlassOverlay(context)
+    }
+
+    /**
+     * Swaps the opaque surfaces for translucent ones so the blurred window backdrop shows through.
+     *
+     * Does nothing unless the user turned glass on *and* actually has an image: translucent
+     * surfaces over nothing look broken rather than stylish.
+     */
+    private fun applyGlassOverlay(context: Context) {
+        if (!PrefsRepository(context).isGlassEnabled) return
+        if (BackgroundImage.getImageFile(context) == null) return
+        val overlay =
+            if (isNightTheme) {
+                R.style.ThemeOverlay_AnkiDroid_Glass_Dark
+            } else {
+                R.style.ThemeOverlay_AnkiDroid_Glass_Light
+            }
+        context.theme.applyStyle(overlay, true)
     }
 
     /**

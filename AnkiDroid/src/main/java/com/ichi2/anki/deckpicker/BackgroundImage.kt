@@ -188,7 +188,7 @@ object BackgroundImage {
     }
 
     /** @return a [File] referencing the image, or `null` if the file does not exist */
-    private fun getImageFile(context: Context): File? {
+    fun getImageFile(context: Context): File? {
         val currentAnkiDroidDirectory = CollectionHelper.getCurrentAnkiDroidDirectory(context)
         val imgFile = File(currentAnkiDroidDirectory, FILENAME)
         if (!imgFile.exists()) {

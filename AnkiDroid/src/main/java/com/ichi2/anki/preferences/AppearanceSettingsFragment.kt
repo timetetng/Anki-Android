@@ -24,6 +24,7 @@ import com.ichi2.anki.common.utils.android.showThemedToast
 import com.ichi2.anki.common.utils.android.systemIsInNightMode
 import com.ichi2.anki.deckpicker.BackgroundImage
 import com.ichi2.anki.deckpicker.BackgroundImage.FileSizeResult
+import com.ichi2.anki.glass.GlassBackground
 import com.ichi2.anki.launchCatchingTask
 import com.ichi2.anki.settings.Prefs
 import com.ichi2.anki.settings.enums.AppTheme
@@ -68,8 +69,22 @@ class AppearanceSettingsFragment : SettingsFragment() {
             true
         }
 
-        // Initially update visibility based on whether a background exists
+        // Initially update visibility based on whether there is a background to remove
         updateRemoveBackgroundVisibility()
+
+        // Glass: blur the background image and put it behind every screen
+        requirePreference<SwitchPreferenceCompat>(R.string.glass_background_key).apply {
+            setOnPreferenceChangeListener { newValue ->
+                if (newValue == true && !BackgroundImage.shouldBeShown(requireContext())) {
+                    showSnackbar(R.string.glass_background_needs_image)
+                    return@setOnPreferenceChangeListener false
+                }
+                // The cached backdrop belongs to the previous setting/image
+                GlassBackground.invalidate()
+                ActivityCompat.recreate(requireActivity())
+                true
+            }
+        }
 
         // Show estimate time
         // Represents the collection pref "estTime": i.e.

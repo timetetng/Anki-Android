@@ -40,6 +40,7 @@
     <string name="pref_appearance_screen_key">appearance_preference_group</string>
     <string name="app_theme_key">appTheme</string>
     <string name="global_card_css_key">globalCardCss</string>
+    <string name="glass_background_key">glassBackground</string>
     <string name="day_theme_key">dayTheme</string>
     <string name="night_theme_key">nightTheme</string>
     <string name="pref_deck_picker_background_key">deckPickerBackground</string>

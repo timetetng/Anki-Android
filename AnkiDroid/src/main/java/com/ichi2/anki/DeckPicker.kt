@@ -1166,6 +1166,13 @@ open class DeckPicker :
     }
 
     private suspend fun applyDeckPickerBackground() {
+        if (Prefs.isGlassEnabled) {
+            // The blurred window backdrop already covers this activity. Skip the local image -
+            // an unblurred copy on top would hide it - but keep telling the list there is a
+            // background, so its rows stay translucent.
+            deckListAdapter.activityHasBackground = true
+            return
+        }
         val result = BackgroundImage.resolve(this)
         if (result is BackgroundImage.ResolveResult.Failure) {
             showThemedToast(this, result.message(this), shortLength = false)

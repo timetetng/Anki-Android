@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Glass: translucent surfaces over the blurred backdrop that `GlassBackground` paints on the
+  window.
+
+  Kept as a theme overlay rather than another entry in the day/night theme lists, so it composes
+  with whichever theme (including Material You) the user picked.
+
+  Only applied when a background image is actually configured - otherwise translucency would just
+  show whatever is behind the window.
+
+  Note: windowBackground is deliberately *not* overridden here. It keeps the opaque theme colour
+  until `GlassBackground` has decoded the image, so a failure to load leaves a normal screen
+  rather than a see-through one.
+-->
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="DuplicateCrowdInStrings">
+    <style name="ThemeOverlay.AnkiDroid.Glass.Light" parent="">
+        <item name="android:colorBackground">@color/glass_surface_light</item>
+        <item name="colorSurface">@color/glass_surface_light</item>
+        <item name="popupBackgroundColor">@color/glass_popup_light</item>
+        <item name="appBarColor">@color/glass_bar_light</item>
+        <item name="tabLayoutBackgroundColor">@color/glass_bar_light</item>
+        <item name="currentDeckBackgroundColor">@color/glass_row_light</item>
+        <item name="focusedRowBackgroundColor">@color/glass_row_light</item>
+        <item name="dialogBackground">@color/glass_popup_light</item>
+    </style>
+
+    <style name="ThemeOverlay.AnkiDroid.Glass.Dark" parent="">
+        <item name="android:colorBackground">@color/glass_surface_dark</item>
+        <item name="colorSurface">@color/glass_surface_dark</item>
+        <item name="popupBackgroundColor">@color/glass_popup_dark</item>
+        <item name="appBarColor">@color/glass_bar_dark</item>
+        <item name="tabLayoutBackgroundColor">@color/glass_bar_dark</item>
+        <item name="currentDeckBackgroundColor">@color/glass_row_dark</item>
+        <item name="focusedRowBackgroundColor">@color/glass_row_dark</item>
+        <item name="dialogBackground">@color/glass_popup_dark</item>
+    </style>
+</resources>
