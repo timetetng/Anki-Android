@@ -74,16 +74,23 @@ class AppearanceSettingsFragment : SettingsFragment() {
 
         // Glass: blur the background image and put it behind every screen
         requirePreference<SwitchPreferenceCompat>(R.string.glass_background_key).apply {
-            setOnPreferenceChangeListener { newValue ->
-                if (newValue == true && !BackgroundImage.shouldBeShown(requireContext())) {
-                    showSnackbar(R.string.glass_background_needs_image)
-                    return@setOnPreferenceChangeListener false
-                }
-                // The cached backdrop belongs to the previous setting/image
-                GlassBackground.invalidate()
-                ActivityCompat.recreate(requireActivity())
-                true
-            }
+            // Call the framework listener rather than PreferenceUtils' Kotlin extension of the same
+            // name: that one returns Unit and always accepts the change, and this one has to be able
+            // to veto it - turning glass on with no image configured shows nothing.
+            setOnPreferenceChangeListener(
+                Preference.OnPreferenceChangeListener { _, newValue ->
+                    val enabled = newValue as? Boolean ?: false
+                    if (enabled && !BackgroundImage.shouldBeShown(requireContext())) {
+                        showSnackbar(R.string.glass_background_needs_image)
+                        false
+                    } else {
+                        // The cached backdrop belongs to the previous setting or image
+                        GlassBackground.invalidate()
+                        ActivityCompat.recreate(requireActivity())
+                        true
+                    }
+                },
+            )
         }
 
         // Show estimate time
