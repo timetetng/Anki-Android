@@ -16,6 +16,7 @@ class CardAppearance(
     private val imageZoom: Int,
     private val centerVertically: Boolean,
     private val globalCss: String = "",
+    private val glassBackground: Boolean = false,
 ) {
     /** Below could be in a better abstraction.  */
     fun appendCssStyle(style: StringBuilder) {
@@ -66,12 +67,32 @@ class CardAppearance(
         style.append("\n")
     }
 
+    /** Emits the rule that lets the blurred backdrop show through behind the card itself. */
+    private fun appendGlassBackground(style: StringBuilder) {
+        if (!glassBackground) return
+        // The card body paints a black/white background by default; let it fall through so the
+        // blurred window backdrop shows. Specific note types can still override with their own
+        // background in the note-type styling (which is emitted later, inside <body>).
+        style.append(
+            """
+            /* glass backdrop */
+            body,
+            body.night_mode,
+            body.ankidroid_dark_mode,
+            body.ankidroid_plain_mode {
+              background-color: transparent !important;
+            }
+            """,
+        )
+    }
+
     val style: String
         get() {
             val style = StringBuilder()
             customFonts.updateCssStyle(style)
             appendCssStyle(style)
             appendGlobalCssStyle(style)
+            appendGlassBackground(style)
             return style.toString()
         }
 
@@ -88,7 +109,8 @@ class CardAppearance(
             val imageZoom = preferences.getInt("imageZoom", 100)
             val centerVertically = preferences.getBoolean("centerVertically", false)
             val globalCss = preferences.getString("globalCardCss", "").orEmpty()
-            return CardAppearance(customFonts, cardZoom, imageZoom, centerVertically, globalCss)
+            val glassBackground = preferences.getBoolean("glassBackground", false)
+            return CardAppearance(customFonts, cardZoom, imageZoom, centerVertically, globalCss, glassBackground)
         }
 
         fun fixBoldStyle(content: String): String {
