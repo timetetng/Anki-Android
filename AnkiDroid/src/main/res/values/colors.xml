@@ -27,6 +27,8 @@
     <color name="glass_popup_light">#F0FFFFFF</color>
     <color name="glass_bar_light">#99FFFFFF</color>
     <color name="glass_row_light">#33FFFFFF</color>
+    <color name="glass_card_light">#8CFFFFFF</color>
+    <color name="glass_card_dark">#C71E1F23</color>
     <color name="glass_surface_dark">#B81C1B1F</color>
     <color name="glass_popup_dark">#F02A2A2E</color>
     <color name="glass_bar_dark">#991C1B1F</color>

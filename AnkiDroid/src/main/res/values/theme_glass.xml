@@ -25,6 +25,9 @@
         <item name="focusedRowBackgroundColor">@color/glass_row_light</item>
         <item name="dialogBackground">@color/glass_popup_light</item>
         <item name="alternativeBackgroundColor">@color/glass_surface_light</item>
+        <item name="colorSurfaceContainerLow">@color/glass_card_light</item>
+        <item name="colorSurfaceContainerHigh">@color/glass_card_light</item>
+        <item name="colorSurfaceContainerHighest">@color/glass_card_light</item>
     </style>
 
     <style name="ThemeOverlay.AnkiDroid.Glass.Dark" parent="">
@@ -37,5 +40,8 @@
         <item name="focusedRowBackgroundColor">@color/glass_row_dark</item>
         <item name="dialogBackground">@color/glass_popup_dark</item>
         <item name="alternativeBackgroundColor">@color/glass_surface_dark</item>
+        <item name="colorSurfaceContainerLow">@color/glass_card_dark</item>
+        <item name="colorSurfaceContainerHigh">@color/glass_card_dark</item>
+        <item name="colorSurfaceContainerHighest">@color/glass_card_dark</item>
     </style>
 </resources>
